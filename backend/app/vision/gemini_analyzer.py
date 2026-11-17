@@ -53,7 +53,8 @@ _RESPONSE_SCHEMA = {
                     "text": {"type": "STRING"},
                     "input_type": {
                         "type": "STRING",
-                        "enum": ["", "text", "email", "password", "search", "number", "tel", "url"],
+                        "enum": ["text", "email", "password", "search", "number", "tel", "url"],
+                        "nullable": True,
                     },
                 },
                 "required": ["shape_index", "bbox", "type", "text", "input_type"],
@@ -109,7 +110,7 @@ async def analyze_with_gemini(image_bytes, image_format, image_width, image_heig
             "GEMINI_API_KEY is missing. Add it to the project .env file, then restart the backend."
         )
 
-    model = os.getenv("GEMINI_MODEL", "gemini-flash-latest").strip() or "gemini-flash-latest"
+    model = os.getenv("GEMINI_MODEL", "gemini-flash-lite-latest").strip() or "gemini-flash-lite-latest"
     prompt = _PROMPT_FILE.read_text(encoding="utf-8")
     prompt = prompt.replace("{canvas_width}", str(image_width))
     prompt = prompt.replace("{canvas_height}", str(image_height))
