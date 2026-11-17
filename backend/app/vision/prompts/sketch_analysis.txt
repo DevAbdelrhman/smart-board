@@ -1,0 +1,7 @@
+Analyze the supplied hand-drawn user interface sketch. Return only structured data matching the response schema.
+
+The original canvas is {canvas_width} by {canvas_height} pixels. Read clearly visible English labels exactly as written. For every text item, return its tight pixel bounding box [x1, y1, x2, y2] on the original canvas and an estimated confidence from 0 to 1. Do not invent unreadable text.
+
+Identify every clear UI component, including rectangles missed by the supplied candidates. Return one shape record per supplied candidate, using its zero-based candidate index as shape_index, and add any other visible UI components with shape_index null. Include each component's tight pixel bounding box. Choose button, input, image, text, or container. Use the nearest associated label as text, and classify common email and password fields correctly. If uncertain, use container and an empty input_type.
+
+Rectangle candidates (pixel x, y, width, height): {candidate_boxes}
